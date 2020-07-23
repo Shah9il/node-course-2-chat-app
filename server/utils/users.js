@@ -34,7 +34,9 @@ class Users {
     };
 
     checkUsername(name){
-        return this.users.filter((user) => user.name === name)[0];
+        var users = this.users.filter((user)=>user.name === name);
+        var namesArray = users.map((user)=>user.name);
+        return namesArray;
     };
 
     getUserList(room){

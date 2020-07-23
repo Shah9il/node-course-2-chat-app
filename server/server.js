@@ -32,6 +32,11 @@ io.on('connection',(socket)=>{
         if(!isRealString(params.name) || !isRealString(params.room)){
             return callback('Name and Room name are required!');
         };
+        console.log(users.checkUsername(params.name),users.checkUsername(params.name).length);
+
+        if(users.checkUsername(params.name).length > 0){
+            return callback(`${params.name} is already taken. Please try different username!`);
+        }
         var roomName = params.room.toLowerCase();
         socket.join(roomName);
         //socket.leave('The Office Fans');
@@ -39,7 +44,6 @@ io.on('connection',(socket)=>{
         // socket.broadcast.emit -> socket.broadcast.to('The Office Fans').emit
         // socket.emit 
         users.removeUser(socket.id);
-
         users.addUser(socket.id,params.name,roomName);
 
         io.to(roomName).emit('updateUserList', users.getUserList(roomName));
