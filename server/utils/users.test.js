@@ -58,6 +58,18 @@ describe('Users',()=>{
         expect(findUser).toBeUndefined();
     });
 
+    it('Should check if username exists',()=>{
+        var userName='Mirza';
+        var checkName = users.checkUsername(userName);
+        expect(checkName[0]).toBe(userName);
+    });
+
+    it('Should check if username doesn\'t exists',()=>{
+        var userName='Shahneel';
+        var checkName = users.checkUsername(userName);
+        expect(checkName[0]).not.toBe(userName);
+    });
+
     it('Should return names for Node Course',()=>{
         var usersList = users.getUserList('Node Course');
 
@@ -69,5 +81,8 @@ describe('Users',()=>{
         expect(usersList).toMatchObject(['Golam']);
     });
 
+    it('Should return unique room\'s list',()=>{
+        expect(users.getRoomList().length).toBe(2);
+    });
 
 });

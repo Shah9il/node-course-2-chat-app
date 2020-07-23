@@ -32,6 +32,10 @@ socket.on('disconnect',function (){
     console.log('Disconnected from server');
 });
 
+socket.on('roomsList',function (rooms){
+    console.log(rooms);
+});
+
 socket.on('updateUserList',function (users){
     var ol = jQuery('<ol></ol>');
     users.forEach( function (user) {

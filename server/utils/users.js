@@ -45,6 +45,20 @@ class Users {
 
         return namesArray;
     };
+
+    onlyUnique(value, index, self) { 
+        return self.indexOf(value) === index;
+    };
+
+    getRoomList(){
+        var allUsers = this.users;
+        var roomsArray = [];
+        allUsers.forEach( function (user) {
+            roomsArray = allUsers.map((user)=>user.room);
+        });
+        return roomsArray.filter(this.onlyUnique);
+    };
+    
 };
 
 module.exports = {Users};

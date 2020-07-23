@@ -27,7 +27,8 @@ io.on('connection',(socket)=>{
     io.emit - emits event to every single connection
     socket.emit - emits to a single connection
  */
-
+    io.emit('roomsList',users.getRoomList());
+    
     socket.on('join',(params, callback) => {
         if(!isRealString(params.name) || !isRealString(params.room)){
             return callback('Name and Room name are required!');
